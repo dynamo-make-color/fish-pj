@@ -26,13 +26,17 @@ function __fish_pj_using_command
   return 1
 end
 
+function __fish_pj_list_project -e __pj_update_list_project
+  __pj_list | while read -l project
+    set -l name (basename $project)
+    complete -f -c pj -n '__fish_pj_needs_command' -a $name -d "Change to $project folder"
+    complete -f -c pj -n '__fish_pj_using_command get' -a $name -d "$project"
+  end
+end
+
 complete -f -c pj -n '__fish_pj_needs_command' -a get -d "Get absolute path of project"
 complete -f -c pj -n '__fish_pj_needs_command' -a add -d "Add pattern to ~/.project/template"
 complete -f -c pj -n '__fish_pj_needs_command' -a remove -d "Remove pattern from ~/.project/template"
 complete -f -c pj -n '__fish_pj_needs_command' -a list -d "List projects from ~/.project/template"
 complete -f -c pj -n '__fish_pj_needs_command' -a update -d "Update list projects from ~/.project/template to ~/.project/list"
-__pj_list | while read -l project
-  set -l name (basename $project)
-  complete -f -c pj -n '__fish_pj_needs_command' -a $name -d "Change to $project folder"
-  complete -f -c pj -n '__fish_pj_using_command get' -a $name -d "$project"
-end
+__fish_pj_list_project

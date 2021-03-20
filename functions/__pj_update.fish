@@ -9,6 +9,7 @@ function __pj_update --description "Update list of projects"
         fd -t d -p $full_path"\$" $HOME >> ~/.project/list
       else
         find $HOME -type d -regextype posix-extended -regex $full_path >> ~/.project/list
+        emit __pj_update_list_project
       end
     end
   end
