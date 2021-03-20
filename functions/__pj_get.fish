@@ -3,5 +3,5 @@ function __pj_get --description "Get absolute path of project"
   if test $argc -le 0 -o $argc -gt 1
     return 1
   end
-  grep --color=never -P $argv[1]'$' ~/.project/list
+  grep --color=never -P -m1 '\/'$argv[1]'$' ~/.project/list
 end
