@@ -15,7 +15,25 @@ fisher install dynamo-make-color/fish-pj
 
 
 ## Configuration
-(TODO: How to make list of projects template)
+
+- You must move your project into your home folder (with n-depth). Each project must have unique folder name.
+- Create `~/.project` folder and edit a `template` file in it:
+    ```fish
+    mkdir -p ~/.project && vim ~/.project/template
+    ```
+- Insert each line of project path into `~/.project/template` with POSIX Extended Regex like below
+    ```
+    Dotfiles
+    Dotfiles/(fish|vim)
+    Working/personal/[^/]*
+    Working/community/[^/]*
+    Working/enterprise/[^/]*
+    ```
+    In above example, your projects list will have `~/Dotfiles`, `~/Dotfiles/fish`, `~/Dotfiles/vim`, all projects in `~/Working/personal`, `~/Working/community`, `~/Working/enterprise`.
+- Run command
+    ```fish
+    pj update
+    ```
 
 ## Usage
 
