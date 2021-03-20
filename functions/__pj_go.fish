@@ -6,6 +6,7 @@ function __pj_go --description "Jump to a project"
   set -l target (__pj_get $argv[1])
   if test -d "$target"
     cd $target
+    test -n $TMUX; and tmux rename-window $argv[1]
   else
     echo "No such project: $argv[1]"
     return 1
